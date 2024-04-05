@@ -1,0 +1,211 @@
+# Click the Variables button, above, to create your own variables.
+GET ${exampleVariable1} // _search
+{
+  "query": {
+    "${exampleVariable2}": {} // match_all
+  }
+}
+
+GET _cluster/health
+GET _nodes/stats
+
+PUT imdb_sample
+
+PUT Name-of-the-Index/_create/id-you-want-to-assign-to-this-document
+{
+  "field": "value"
+}
+
+GET imdb_sample/_doc/id-of-the-document-you-want-to-retrieve
+
+
+POST _bulk
+
+GET imdb
+GET imdb/_count
+GET imdb/_search
+
+GET imdb/_search
+{
+  //"_source": ["title"],
+  "query": {
+    "bool": {
+      "must": {
+        "term":{
+          "title":"spider"
+        }
+      }
+      
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match": {
+      "first_page_summary": "monster"
+    }
+  }
+}
+
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match": {
+      "first_page_summary": "good monster"
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match": {
+      "first_page_summary":{
+      "query": "good monster",
+      "operator": "and"
+      }
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match": {
+      "first_page_summary":{
+      "query": "the good monster",
+      "operator": "or"
+      }
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match": {
+      "first_page_summary":{
+      "query": "the good monster",
+      "operator": "or",
+      "minimum_should_match": 2
+      }
+    }
+  }
+}
+
+
+
+
+GET imdb/_search
+{
+  "query": {
+    "more_like_this" : {
+      "fields" : ["summaries", "synopsises"],
+      "like" : "detective",
+      "min_term_freq" : 1
+      //"max_query_terms" : 12
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title"],
+  "query": {
+    "more_like_this" : {
+      "fields" : ["summaries", "synopsises"],
+      "like" : "detective",
+      "min_term_freq" : 1
+      //"max_query_terms" : 12
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title"],
+  "query": {
+    "more_like_this" : {
+      "fields" : ["summaries", "synopsises"],
+      "like" : "spider",
+      "min_term_freq" : 1
+      //"max_query_terms" : 12
+    }
+  }
+}
+GET /imdb/_termvectors/azgLEI4B1KL-Kgyhl5bn
+{
+  "fields": ["summaries", "synopsises"],
+  "term_statistics": true,
+    "filter": {
+    "max_num_terms": 3,
+    "min_term_freq": 1,
+    "min_doc_freq": 1
+  },
+  "positions": false,
+  "offsets": false
+}
+
+GET imdb/_search
+{
+  "_source": ["title"],
+  "query": {
+    "more_like_this" : {
+      "fields" : ["title"],
+      "like" : "The Good, the Bad and the Ugly",
+      "min_term_freq" : 3
+      //"max_query_terms" : 12
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match": {
+      "first_page_summary": {
+        "query": "a killer",
+        "operator": "and"
+      }
+    }
+  }
+}
+GET imdb/_search
+{
+  "_source": ["title","first_page_summary"],
+  "query": {
+    "match_phrase": {
+      "first_page_summary": {
+        "query": "a killer"
+      }
+    }
+  }
+}
+GET Enter_the_name_of_the_index_here/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Enter search terms",
+      "fields": [
+        "List field you want to boost^2",
+        "List field you want to search over",
+        "List field you want to search over"
+      ]
+    }
+  }
+}
+
+GET imdb/_search
+{
+  "_source": ["title","mpaa"],
+  "query": {
+    "bool": { 
+    "filter": [
+      {"term": {"mpaa":"r"}}
+      ]
+    }
+  }
+}
+
+
