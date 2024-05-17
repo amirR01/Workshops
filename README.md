@@ -5,3 +5,4 @@ My workshops files including codes and notes.
 - [**Introduction to Python**](https://github.com/amirR01/Workshops/tree/main/Introduction-to-python)
 - [**Elasticsearch**](https://github.com/amirR01/Workshops/tree/main/ElasticSearch)
 - [**How java works and JVM**](https://github.com/amirR01/Workshops/tree/main/How_java_works_JVM)
+- [**Introduction to Scikit-Learn**](https://github.com/amirR01/Workshops/tree/main/introduction-to-scikit-learn)
